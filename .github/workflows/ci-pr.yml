@@ -46,9 +46,6 @@ jobs:
       - name: 'Lint JavaScript'
         run: npm run lint
 
-      - name: 'alba tests'
-        run: ls
-
       # Unit tests
       - name: 'Run unit tests'
         run: npm run test
