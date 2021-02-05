@@ -1,0 +1,45 @@
+# Unique name for this workflow
+name: CI
+
+# Definition when the workflow should run
+on:
+    push:
+        branches:
+            - main
+
+# Jobs to be executed
+jobs:
+    format-lint-test:
+        runs-on: ubuntu-latest
+        steps:
+            # Checkout the code in the pull request
+            - name: 'Checkout source code'
+              uses: actions/checkout@v2
+
+            # Cache node_modules to speed up the process
+            - name: Restore npm cached modules if possible
+              id: npm-cache
+              run: |
+                echo "::set-output name=dir::$(npm config get cache)"
+              uses: actions/cache@v2
+              with:
+                path: ${{ steps.npm-cache.outputs.dir }}
+                key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+                restore-keys: |
+                  ${{ runner.os }}-node-
+            # Install npm dependencies
+            - name: 'Install dependencies if needed'
+              if: steps.cache-yarn.outputs.cache-hit != 'true'
+              run: npm ci
+
+            # Prettier formatting
+            - name: 'Code formatting verification with Prettier'
+              run: npm run reformat
+
+            # ESlint
+            - name: 'Lint JavaScript'
+              run: npm run lint
+
+            # Unit tests
+            - name: 'Run unit tests'
+              run: npm run test
