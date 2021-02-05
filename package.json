@@ -12,14 +12,14 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:lwc-builder.helloWorld"
+    "onCommand:lwc-builder.openLWCBuilder"
   ],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "lwc-builder.helloWorld",
-        "title": "Hello World"
+        "command": "lwc-builder.openLWCBuilder",
+        "title": "Open LWC Builder"
       }
     ]
   },
@@ -37,7 +37,7 @@
     "@salesforce/dev-config": "1.4.1",
     "@types/glob": "^7.1.3",
     "@types/mocha": "^8.0.4",
-    "@types/node": "^12.11.7",
+    "@types/node": "^12.19.16",
     "@types/vscode": "^1.52.0",
     "@typescript-eslint/eslint-plugin": "^4.14.1",
     "@typescript-eslint/parser": "^4.14.1",
