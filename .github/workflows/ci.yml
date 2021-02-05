@@ -35,6 +35,10 @@ jobs:
         if: steps.npm-cache.outputs.cache-hit != 'true'
         run: npm ci
 
+      # Compilation
+      - name: 'Compile code'
+        run: npm run compile
+
       # Prettier formatting
       - name: 'Code formatting verification with Prettier'
         run: npm run prettier:verify
