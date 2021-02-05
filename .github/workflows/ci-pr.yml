@@ -34,6 +34,10 @@ jobs:
         if: steps.npm-cache.outputs.cache-hit != 'true'
         run: npm ci
 
+      # Install xvfb, needed for running headless tests
+      - name: 'Install xvfb'
+        run: sudo apt-get install xvfb
+
       # Compilation
       - name: 'Compile code'
         run: npm run compile
@@ -48,4 +52,4 @@ jobs:
 
       # Unit tests
       - name: 'Run unit tests'
-        run: npm run test
+        run: xvfb-run -a npm test
