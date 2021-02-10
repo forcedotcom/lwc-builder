@@ -17,10 +17,17 @@ import * as vscode from 'vscode';
 export class HtmlUtils {
   /**
    * This regex will match tags in a string like this
-   * <script src="./0.app.js"></script><script src="./app.js"></script>
+   * <script defer src="./app-[randomstring].js"></script>
    * And store just the filename section of the script tag as group[1]
    */
-  protected static readonly scriptRegex = /script\sdefer\ssrc=\"\.\/([^\"]*.js)\"/g;
+  protected static readonly scriptRegex = /script\sdefer\ssrc=\"\.\/(app-[^\"]*.js)\"/g;
+
+  /**
+   * This regex will match tags in a string like this
+   * href="./resources/[any path]"
+   * And store just the filename section of the script tag as group[1]
+   */
+  protected static readonly resourceRegex = /\shref=\"\.\/(resources\/[^\"]*)\"/g;
 
   /**
    *
@@ -34,6 +41,7 @@ export class HtmlUtils {
     webview: vscode.Webview
   ): string {
     html = HtmlUtils.transformScriptTags(html, pathToLwcDist, webview);
+    html = HtmlUtils.transformResourceFolders(html, pathToLwcDist, webview);
     html = HtmlUtils.replaceCspMetaTag(html, webview);
     return html;
   }
@@ -74,6 +82,41 @@ export class HtmlUtils {
   }
 
   /**
+   * This section replaces the relative file paths that are produced by
+   * webpack in the build in the dist folder with the protocol that
+   * vscode uses internally.
+   *
+   * Initial html link tags look like this
+   * <link rel="stylesheet" type="text/css" href="./resources/slds/styles/salesforce-lightning-design-system.min.css" />
+   *
+   * Each matched script tag gets transformed into into a vscode specific url
+   * <link rel="stylesheet" type="text/css" href="vscode-webview-resource://resources/slds/styles/salesforce-lightning-design-system.min.css" />
+   *
+   * Since we don't know how many bundles webpack will produce in the dist directory, we regex match and
+   * replace them in a while loop.
+   *
+   * @param html
+   * @param pathToLwcDist
+   * @param webview
+   */
+  public static transformResourceFolders(
+    html: string,
+    pathToLwcDist: string,
+    webview: vscode.Webview
+  ): string {
+    let matches;
+    let newResourceSrc;
+    // tslint:disable-next-line:no-conditional-assignment
+    while ((matches = HtmlUtils.resourceRegex.exec(html)) !== null) {
+      newResourceSrc = webview.asWebviewUri(
+        vscode.Uri.file(path.join(pathToLwcDist, matches[1]))
+      );
+      html = html.replace(`./${matches[1]}`, newResourceSrc.toString());
+    }
+    return html;
+  }
+
+  /**
    * This method adds stricter CSP for displaying this webview inside of VSCode
    * @param html
    * @param webview
@@ -87,9 +130,9 @@ export class HtmlUtils {
       content="default-src 'self' ${webview.cspSource};
       connect-src ${webview.cspSource};
       script-src-elem ${webview.cspSource};
-      img-src ${webview.cspSource};
-      script-src ${webview.cspSource};
-      style-src 'unsafe-inline' ${webview.cspSource};"
+      img-src ${webview.cspSource} vscode-webview:;
+      script-src ${webview.cspSource} vscode-webview:;
+      style-src 'unsafe-inline' ${webview.cspSource} vscode-webview:;"
     />`;
 
     html = html.replace('<!-- CSP TAG -->', cspMetaTag);
