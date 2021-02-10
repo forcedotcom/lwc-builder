@@ -20,7 +20,7 @@ export class HtmlUtils {
    * <script src="./0.app.js"></script><script src="./app.js"></script>
    * And store just the filename section of the script tag as group[1]
    */
-  protected static readonly scriptRegex = /script\ssrc=\"\.\/(?<app>[^\"]*app.js)\"/g;
+  protected static readonly scriptRegex = /script\sdefer\ssrc=\"\.\/([^\"]*.js)\"/g;
 
   /**
    *
@@ -84,7 +84,9 @@ export class HtmlUtils {
   ): string {
     const cspMetaTag = `<meta
       http-equiv="Content-Security-Policy"
-      content="default-src 'self';
+      content="default-src 'self' ${webview.cspSource};
+      connect-src ${webview.cspSource};
+      script-src-elem ${webview.cspSource};
       img-src ${webview.cspSource};
       script-src ${webview.cspSource};
       style-src 'unsafe-inline' ${webview.cspSource};"
