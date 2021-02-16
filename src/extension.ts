@@ -8,7 +8,7 @@
 import * as vscode from 'vscode';
 import { WebviewInstance } from './webviewInstance';
 
-export function activate(context: vscode.ExtensionContext) {
+export function activate(context: vscode.ExtensionContext): void {
   console.log('Congratulations, your extension "lwc-builder" is now active!');
 
   const openLWCBuilderCommand = vscode.commands.registerCommand(
