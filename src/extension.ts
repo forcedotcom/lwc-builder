@@ -6,33 +6,19 @@
  */
 
 import * as vscode from 'vscode';
-import { getWebviewContent } from './lwcBuilder';
+import { WebviewInstance } from './webviewInstance';
 
 export function activate(context: vscode.ExtensionContext) {
   console.log('Congratulations, your extension "lwc-builder" is now active!');
 
-  const disposable = vscode.commands.registerCommand(
+  const openLWCBuilderCommand = vscode.commands.registerCommand(
     'lwc-builder.openLWCBuilder',
     () => {
-      vscode.window.showInformationMessage('Hello World from lwc-builder!');
-      const webviewPanel = vscode.window.createWebviewPanel(
-        'lwcBuilder',
-        'LWC Builder',
-        vscode.ViewColumn.One,
-        {
-          // Enable scripts in the webview
-          enableScripts: true,
-        }
-      );
-
-      webviewPanel.webview.html = getWebviewContent(
-        context,
-        webviewPanel.webview
-      );
+      new WebviewInstance(context);
     }
   );
 
-  context.subscriptions.push(disposable);
+  context.subscriptions.push(openLWCBuilderCommand);
 }
 
 // export function deactivate() {}
