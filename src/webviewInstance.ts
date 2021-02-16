@@ -83,6 +83,6 @@ export class WebviewInstance {
   }
 
   protected dispose(): void {
-    this.subscriptions.forEach((dispposable) => dispposable.dispose());
+    this.subscriptions.forEach((disposable) => disposable.dispose());
   }
 }
