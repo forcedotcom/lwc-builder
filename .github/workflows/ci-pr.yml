@@ -25,7 +25,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ${{ steps.cache-dir.outputs.dir }}
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}-v1
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
 
