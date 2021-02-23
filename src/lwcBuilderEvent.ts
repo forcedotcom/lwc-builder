@@ -5,18 +5,34 @@
  * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
+// TODO: Can we share this class with lwc-builder-ui?
 export interface LWCBuilderEvent {
   type: string;
-  payload?: string | Payload;
+  payload: Payload;
   error: string;
 }
 
 export class Payload {
-  public componentName: string;
-  public apiVersion: string;
+  public css: string;
+  public html: string;
+  public js: string;
+  public meta: string;
+  public svg: string;
+  public test: string;
 
-  constructor(componentName: string, apiVersion: string) {
-    this.componentName = componentName;
-    this.apiVersion = apiVersion;
+  constructor(
+    css: string,
+    html: string,
+    js: string,
+    meta: string,
+    svg: string,
+    test: string
+  ) {
+    this.css = css;
+    this.html = html;
+    this.js = js;
+    this.meta = meta;
+    this.svg = svg;
+    this.test = test;
   }
 }

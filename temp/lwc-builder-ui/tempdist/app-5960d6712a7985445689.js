@@ -13520,6 +13520,118 @@ https://github.com/snabbdom/snabbdom/
         /***/
       },
 
+    /***/ './src/modules/domain/LWCBuilderEvent.js':
+      /*!***********************************************!*\
+  !*** ./src/modules/domain/LWCBuilderEvent.js ***!
+  \***********************************************/
+      /***/ (
+        __unused_webpack_module,
+        __webpack_exports__,
+        __webpack_require__
+      ) => {
+        'use strict';
+        __webpack_require__.r(__webpack_exports__);
+        /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+          /* harmony export */ default: () => __WEBPACK_DEFAULT_EXPORT__,
+          /* harmony export */
+        });
+        /* harmony import */ var lwc__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+          /*! lwc */ './node_modules/@lwc/engine/dist/engine.cjs.js'
+        );
+        /* harmony import */ var _LWCBuilderEvent_html__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+          /*! ./LWCBuilderEvent.html */ './node_modules/lwc-webpack-plugin/dist/mocks/empty-style.js'
+        );
+
+        /*
+         * Copyright (c) 2021, salesforce.com, inc.
+         * All rights reserved.
+         * Licensed under the BSD 3-Clause license.
+         * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
+         */
+
+        class Payload {
+          constructor(payload) {
+            this.apiVersion = void 0;
+            this.componentName = void 0;
+            this.configurationEditor = void 0;
+            this.css = void 0;
+            this.description = void 0;
+            this.html = void 0;
+            this.isExposed = void 0;
+            this.js = void 0;
+            this.meta = void 0;
+            this.objectIds = void 0;
+            this.objects = void 0;
+            this.primaryLabel = void 0;
+            this.properties = void 0;
+            this.propertyIds = void 0;
+            this.svg = void 0;
+            this.svgFileContent = void 0;
+            this.svgFileName = void 0;
+            this.targets = void 0;
+            this.test = void 0;
+            this.withCss = void 0;
+            this.withHtml = void 0;
+            this.withSvg = void 0;
+            this.withTes = void 0;
+            Object.assign(this, payload);
+          }
+        }
+
+        (0, lwc__WEBPACK_IMPORTED_MODULE_0__.registerDecorators)(Payload, {
+          fields: [
+            'apiVersion',
+            'componentName',
+            'configurationEditor',
+            'css',
+            'description',
+            'html',
+            'isExposed',
+            'js',
+            'meta',
+            'objectIds',
+            'objects',
+            'primaryLabel',
+            'properties',
+            'propertyIds',
+            'svg',
+            'svgFileContent',
+            'svgFileName',
+            'targets',
+            'test',
+            'withCss',
+            'withHtml',
+            'withSvg',
+            'withTes',
+          ],
+        });
+
+        class LWCBuilderEvent {
+          // Options: create_button_clicked
+          // Payload object
+          constructor(type, payload) {
+            this.type = void 0;
+            this.payload = void 0;
+            this.type = type;
+            this.payload = new Payload(payload);
+          }
+        }
+
+        (0, lwc__WEBPACK_IMPORTED_MODULE_0__.registerDecorators)(
+          LWCBuilderEvent,
+          {
+            fields: ['type', 'payload'],
+          }
+        );
+
+        /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (0,
+        lwc__WEBPACK_IMPORTED_MODULE_0__.registerComponent)(LWCBuilderEvent, {
+          tmpl: _LWCBuilderEvent_html__WEBPACK_IMPORTED_MODULE_1__.default,
+        });
+
+        /***/
+      },
+
     /***/ './src/modules/my/app/app.js':
       /*!***********************************!*\
   !*** ./src/modules/my/app/app.js ***!
@@ -13547,6 +13659,9 @@ https://github.com/snabbdom/snabbdom/
         /* harmony import */ var _lwc_synthetic_shadow__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/ __webpack_require__.n(
           _lwc_synthetic_shadow__WEBPACK_IMPORTED_MODULE_2__
         );
+        /* harmony import */ var _domain_LWCBuilderEvent__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+          /*! ../../domain/LWCBuilderEvent */ './src/modules/domain/LWCBuilderEvent.js'
+        );
 
         /*
          * Copyright (c) 2021, salesforce.com, inc.
@@ -13559,12 +13674,21 @@ https://github.com/snabbdom/snabbdom/
           constructor(...args) {
             super(...args);
             this.contents = void 0;
+            this.vscode = void 0;
 
             this.onUpdateForm = (e) => {
               this.contents = e.detail;
             };
 
             this.generate = () => {
+              // Send message to server
+              const message = new _domain_LWCBuilderEvent__WEBPACK_IMPORTED_MODULE_3__.default(
+                'create_button_clicked',
+                this.contents
+              );
+              this.vscode.postMessage(
+                JSON.parse(JSON.stringify(message)) // Avoid clone error --> https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Structured_clone_algorithm
+              );
               console.log(this.contents);
               const {
                 withCss,
@@ -13597,6 +13721,10 @@ https://github.com/snabbdom/snabbdom/
             this.showPreview = () => {};
           }
 
+          connectedCallback() {
+            this.vscode = acquireVsCodeApi(); // eslint-disable-line
+          }
+
           get hasContents() {
             return !!this.contents && !!this.contents.componentName;
           }
@@ -13606,7 +13734,7 @@ https://github.com/snabbdom/snabbdom/
           track: {
             contents: 1,
           },
-          fields: ['onUpdateForm', 'generate', 'showPreview'],
+          fields: ['vscode', 'onUpdateForm', 'generate', 'showPreview'],
         });
 
         /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (0,
@@ -26257,4 +26385,4 @@ PERFORMANCE OF THIS SOFTWARE.
   /******/ // This entry module used 'exports' so it can't be inlined
   /******/
 })();
-//# sourceMappingURL=app-becfc9c51bfd6fd3cc60.js.map
+//# sourceMappingURL=app-5960d6712a7985445689.js.map
