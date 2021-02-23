@@ -27,8 +27,6 @@ jobs:
         with:
           path: ${{ steps.cache-dir.outputs.dir }}
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
 
       # Install npm dependencies
       - name: 'Install dependencies if needed'
