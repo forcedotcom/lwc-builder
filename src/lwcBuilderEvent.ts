@@ -13,6 +13,7 @@ export interface LWCBuilderEvent {
 }
 
 export class Payload {
+  public componentName: string;
   public css: string;
   public html: string;
   public js: string;
@@ -21,6 +22,7 @@ export class Payload {
   public test: string;
 
   constructor(
+    componentName: string,
     css: string,
     html: string,
     js: string,
@@ -28,6 +30,7 @@ export class Payload {
     svg: string,
     test: string
   ) {
+    this.componentName = componentName;
     this.css = css;
     this.html = html;
     this.js = js;
