@@ -11,6 +11,7 @@ import * as path from 'path';
 import { HTML_FILE, LWC_BUILDER_UI_PATH } from './constants';
 import { HtmlUtils } from './htmlUtils';
 import { LWCBuilderEvent } from './lwcBuilderEvent';
+import { createLwcFolder } from './lwcBuilderHandler';
 
 export class WebviewInstance {
   public subscriptions: vscode.Disposable[] = [];
@@ -62,6 +63,8 @@ export class WebviewInstance {
       case 'create_button_clicked':
         vscode.window.showInformationMessage('Message correctly received!');
         console.log(event.payload.html); // Create cmp files
+
+        createLwcFolder(event.payload);
       case 'error':
         vscode.window.showErrorMessage(event.error);
         return;
