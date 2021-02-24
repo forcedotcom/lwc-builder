@@ -7,9 +7,9 @@
 import * as path from 'path';
 
 export const LWC_BUILDER_UI_PATH = path.join(
-  'temp',
-  'lwc-builder-ui',
-  'tempdist'
+  'node_modules',
+  'lwc-builder-ui-dev',
+  'dist'
 );
 
 export const HTML_FILE = 'index.html';
