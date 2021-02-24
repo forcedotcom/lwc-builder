@@ -7,10 +7,14 @@
 import * as vscode from 'vscode';
 import { Payload } from './lwcBuilderEvent';
 
-export const createLwcFolder = async (payload: Payload): void => {
+export const createLwcFolder = async (payload: Payload): Promise<void> => {
   const { componentName, html, css, js, test, meta, svg } = payload;
   const wsedit = new vscode.WorkspaceEdit();
-  const wsPath = vscode.workspace.workspaceFolders[0].uri.fsPath; // gets the path of the first workspace folder
+  const folders = vscode.workspace.workspaceFolders;
+  if (!folders || folders.length === 0) {
+    return;
+  }
+  const wsPath = folders[0].uri.fsPath; // gets the path of the first workspace folder
 
   const jsFile = vscode.Uri.file(
     `${wsPath}/${payload.componentName}/${payload.componentName}.js`
