@@ -56,24 +56,12 @@ export class WebviewInstance {
     return html;
   }
 
-  // Do we need this at all?
-  protected sendMessageToUi(type: string, payload: string): void {
-    this.webviewPanel.webview
-      .postMessage({
-        type,
-        payload,
-      })
-      .then(undefined, (err: string) => {
-        vscode.window.showErrorMessage(err);
-      });
-  }
-
   protected onDidReceiveMessageHandler(event: LWCBuilderEvent): void {
     // Handle messages from the webview
     switch (event.type) {
       case 'create_button_clicked':
-        // TODO Read LWC options from message and create cmp files
-        vscode.window.showInformationMessage(JSON.stringify(event.payload));
+        vscode.window.showInformationMessage('Message correctly received!');
+        console.log(event.payload.html); // Create cmp files
       case 'error':
         vscode.window.showErrorMessage(event.error);
         return;
