@@ -26,9 +26,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ${{ steps.cache-dir.outputs.dir }}
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}-v1
 
       # Install npm dependencies
       - name: 'Install dependencies if needed'
