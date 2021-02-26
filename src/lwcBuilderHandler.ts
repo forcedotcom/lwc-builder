@@ -7,59 +7,77 @@
 import * as vscode from 'vscode';
 import { Payload } from './lwcBuilderEvent';
 
-export const createLwcFolder = async (payload: Payload): Promise<void> => {
+const getLwcFolderPath = (uri: vscode.Uri) => {
+  if (uri) {
+    return uri.fsPath;
+  } else {
+    const folders = vscode.workspace.workspaceFolders;
+    if (!folders || folders.length === 0) {
+      return null;
+    }
+    return folders[0].uri.fsPath + '/force-app/main/default/lwc';
+  }
+};
+
+export const createLwcFolder = async (
+  payload: Payload,
+  uri: vscode.Uri
+): Promise<void> => {
   const { componentName, html, css, js, test, meta, svg } = payload;
   const wsedit = new vscode.WorkspaceEdit();
-  const folders = vscode.workspace.workspaceFolders;
-  if (!folders || folders.length === 0) {
+  const wsPath = getLwcFolderPath(uri);
+  if (!wsPath) {
     return;
   }
-  const wsPath = folders[0].uri.fsPath; // gets the path of the first workspace folder
 
-  const jsFile = vscode.Uri.file(
-    `${wsPath}/${payload.componentName}/${payload.componentName}.js`
-  );
-  const metaFile = vscode.Uri.file(
-    `${wsPath}/${payload.componentName}/${payload.componentName}.js-meta.xml`
-  );
-  wsedit.createFile(jsFile, { ignoreIfExists: true });
-  wsedit.createFile(metaFile, { ignoreIfExists: true });
+  const filesData: { file: vscode.Uri; data: Buffer }[] = [];
+  const fileOptions = { ignoreIfExists: true };
+  const charset = 'utf8';
 
-  if (html) {
-    const htmlFile = vscode.Uri.file(
-      `${wsPath}/${payload.componentName}/${payload.componentName}.html`
-    );
-    wsedit.createFile(htmlFile, { ignoreIfExists: true });
-  }
-  if (css) {
-    const cssFile = vscode.Uri.file(
-      `${wsPath}/${payload.componentName}/${payload.componentName}.css`
-    );
-    wsedit.createFile(cssFile, { ignoreIfExists: true });
-  }
-  if (test) {
-    const testFile = vscode.Uri.file(
-      `${wsPath}/${payload.componentName}/__tests__/${payload.componentName}.test.js`
-    );
-    wsedit.createFile(testFile, { ignoreIfExists: true });
-  }
-  if (svg) {
-    const svgFile = vscode.Uri.file(
-      `${wsPath}/${payload.componentName}/${payload.componentName}.svg`
-    );
-    wsedit.createFile(svgFile, { ignoreIfExists: true });
-  }
+  const data = [
+    {
+      content: js,
+      path: `${wsPath}/${componentName}/${componentName}.js`,
+    },
+    {
+      content: meta,
+      path: `${wsPath}/${componentName}/${componentName}.js-meta.xml`,
+    },
+    {
+      content: html,
+      path: `${wsPath}/${componentName}/${componentName}.html`,
+    },
+    {
+      content: css,
+      path: `${wsPath}/${componentName}/${componentName}.css`,
+    },
+    {
+      content: test,
+      path: `${wsPath}/${componentName}/__tests__/${componentName}.test.js`,
+    },
+    {
+      content: svg,
+      path: `${wsPath}/${componentName}/${componentName}.svg`,
+    },
+  ];
+
+  data.forEach(({ content, path }) => {
+    if (content) {
+      const file = vscode.Uri.file(path);
+      wsedit.createFile(file, fileOptions);
+      filesData.push({ file: file, data: Buffer.from(content, charset) });
+    }
+  });
 
   // Create folder and files
-  vscode.workspace.applyEdit(wsedit);
+  await vscode.workspace.applyEdit(wsedit);
 
-  const jsData = Buffer.from(js, 'utf8');
-  await vscode.workspace.fs.writeFile(jsFile, jsData);
-
-  const metaData = Buffer.from(meta, 'utf8');
-  await vscode.workspace.fs.writeFile(metaFile, metaData);
+  // write contents to files
+  filesData.forEach(async (f) => {
+    await vscode.workspace.fs.writeFile(f.file, f.data);
+  });
 
   vscode.window.showInformationMessage(
-    `Created a new lwc bundle : ${componentName}`
+    `New LWC bundle created : ${componentName}`
   );
 };
