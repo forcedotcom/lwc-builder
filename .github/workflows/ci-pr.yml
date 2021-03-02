@@ -28,6 +28,10 @@ jobs:
         if: steps.npm-cache.outputs.cache-hit != 'true'
         run: npm ci
 
+      # Remove .vscode-test if there
+      - name: 'Remove .vscode-test'
+        run: rm -rf .vscode-test
+
       # Install xvfb, needed for running headless tests
       - name: 'Install xvfb'
         run: sudo apt-get install xvfb
