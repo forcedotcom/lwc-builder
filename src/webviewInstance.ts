@@ -16,8 +16,9 @@ import { createLwcFolder } from './lwcBuilderHandler';
 export class WebviewInstance {
   public subscriptions: vscode.Disposable[] = [];
   private webviewPanel: vscode.WebviewPanel;
+  private lwcFolderUri: vscode.Uri;
 
-  constructor(context: vscode.ExtensionContext) {
+  constructor(context: vscode.ExtensionContext, uri: vscode.Uri) {
     // Create webview panel
     this.webviewPanel = vscode.window.createWebviewPanel(
       'lwcBuilder',
@@ -44,6 +45,8 @@ export class WebviewInstance {
 
     // Make sure we get rid of the event listeners when our editor is closed
     this.webviewPanel.onDidDispose(this.dispose, this, this.subscriptions);
+
+    this.lwcFolderUri = uri;
   }
 
   private getWebviewContent(
@@ -61,10 +64,7 @@ export class WebviewInstance {
     // Handle messages from the webview
     switch (event.type) {
       case 'create_button_clicked':
-        vscode.window.showInformationMessage('Message correctly received!');
-        console.log(event.payload.html); // Create cmp files
-
-        createLwcFolder(event.payload);
+        createLwcFolder(event.payload, this.lwcFolderUri);
       case 'error':
         vscode.window.showErrorMessage(event.error);
         return;

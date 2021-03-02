@@ -13,8 +13,8 @@ export function activate(context: vscode.ExtensionContext): void {
 
   const openLWCBuilderCommand = vscode.commands.registerCommand(
     'lwc-builder.openLWCBuilder',
-    () => {
-      new WebviewInstance(context);
+    (uri: vscode.Uri) => {
+      new WebviewInstance(context, uri);
     }
   );
 
