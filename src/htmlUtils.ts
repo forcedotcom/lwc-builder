@@ -20,7 +20,7 @@ export class HtmlUtils {
    * <script defer src="./app-[randomstring].js"></script>
    * And store just the filename section of the script tag as group[1]
    */
-  protected static readonly scriptRegex = /script\sdefer\ssrc=\"\.\/(app-[^\"]*.js)\"/g;
+  protected static readonly scriptRegex = /script\sdefer=\"defer\"\ssrc=\"\.\/(app-[^\"]*.js)\"/g;
 
   /**
    * This regex will match tags in a string like this
@@ -129,7 +129,7 @@ export class HtmlUtils {
       http-equiv="Content-Security-Policy"
       content="default-src 'self' ${webview.cspSource};
       connect-src ${webview.cspSource};
-      script-src-elem ${webview.cspSource};
+      script-src-elem ${webview.cspSource} vscode-webview:;
       img-src ${webview.cspSource} vscode-webview:;
       script-src ${webview.cspSource} vscode-webview:;
       style-src 'unsafe-inline' ${webview.cspSource} vscode-webview:;"
