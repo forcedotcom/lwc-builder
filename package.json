@@ -44,7 +44,7 @@
     "postinstall": "husky install"
   },
   "dependencies": {
-    "lwc-builder-ui-dev": "^0.1.18"
+    "lwc-builder-ui-dev": "^0.1.19"
   },
   "devDependencies": {
     "@salesforce/dev-config": "2.1.0",
