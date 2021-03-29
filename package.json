@@ -5,7 +5,7 @@
   "description": "VSCode extension to build LWC easily",
   "version": "0.1.0",
   "license": "BSD-3-Clause",
-  "repository" : "https://github.com/developerforce/lwc-builder",
+  "repository": "https://github.com/developerforce/lwc-builder",
   "engines": {
     "vscode": "^1.53.0"
   },
