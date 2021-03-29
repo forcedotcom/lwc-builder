@@ -17,7 +17,7 @@ import * as vscode from 'vscode';
 export class HtmlUtils {
   /**
    * This regex will match tags in a string like this
-   * <script defer src="./app-[randomstring].js"></script>
+   * <script type="module" src="index.js"></script>
    * And store just the filename section of the script tag as group[1]
    */
   protected static readonly scriptRegex = /script\stype=\"module\"\ssrc=\"(index\.js)\"/g;
