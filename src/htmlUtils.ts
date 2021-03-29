@@ -20,7 +20,7 @@ export class HtmlUtils {
    * <script defer src="./app-[randomstring].js"></script>
    * And store just the filename section of the script tag as group[1]
    */
-  protected static readonly scriptRegex = /script\sdefer=\"defer\"\ssrc=\"\.\/(app-[^\"]*.js)\"/g;
+  protected static readonly scriptRegex = /script\stype=\"module\"\ssrc=\"(index\.js)\"/g;
 
   /**
    * This regex will match tags in a string like this
@@ -76,7 +76,7 @@ export class HtmlUtils {
       newScriptSrc = webview.asWebviewUri(
         vscode.Uri.file(path.join(pathToLwcDist, matches[1]))
       );
-      html = html.replace(`./${matches[1]}`, newScriptSrc.toString());
+      html = html.replace(`${matches[1]}`, newScriptSrc.toString());
     }
     return html;
   }
