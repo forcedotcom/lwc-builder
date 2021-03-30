@@ -31,7 +31,7 @@ export const createLwcFolder = async (
   }
 
   const filesData: { file: vscode.Uri; data: Buffer }[] = [];
-  const fileOptions = { ignoreIfExists: true };
+  const fileOptions = { ignoreIfExists: false };
   const charset = 'utf8';
 
   const data = [
@@ -69,8 +69,21 @@ export const createLwcFolder = async (
     }
   });
 
+  // js and meta file must exist
+  if (filesData.length < 1) {
+    return;
+  }
+
   // Create folder and files
-  await vscode.workspace.applyEdit(wsedit);
+  const folderCreated = await vscode.workspace.applyEdit(wsedit);
+
+  // If the component already exists, cancel
+  if (!folderCreated) {
+    vscode.window.showErrorMessage(
+      `Failed to create a folder. "${componentName}" component already exists.`
+    );
+    return;
+  }
 
   // write contents to files
   filesData.forEach(async (f) => {
