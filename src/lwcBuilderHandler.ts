@@ -90,6 +90,9 @@ export const createLwcFolder = async (
     await vscode.workspace.fs.writeFile(f.file, f.data);
   });
 
+  // Open js file
+  await vscode.window.showTextDocument(filesData[0].file);
+
   vscode.window.showInformationMessage(
     `New LWC bundle created : ${componentName}`
   );
