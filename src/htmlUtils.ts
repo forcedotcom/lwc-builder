@@ -135,7 +135,7 @@ export class HtmlUtils {
       style-src 'unsafe-inline' ${webview.cspSource} vscode-webview:;"
     />`;
 
-    html = html.replace('<!-- CSP TAG -->', cspMetaTag);
+    html = html.replace('</head>', `${cspMetaTag}</head>`);
     return html;
   }
 }
