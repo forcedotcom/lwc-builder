@@ -3,7 +3,7 @@
   "displayName": "lwc-builder",
   "publisher": "lwc-builder",
   "description": "VSCode extension to build LWC easily",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "license": "BSD-3-Clause",
   "author": "@albarivas",
   "repository": "https://github.com/developerforce/lwc-builder",
@@ -30,6 +30,12 @@
           "command": "lwc-builder.openLWCBuilder",
           "title": "Open LWC Builder",
           "when": "explorerResourceIsFolder && resourceFilename == lwc && sfdx:project_opened"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "lwc-builder.openLWCBuilder",
+          "when": "sfdx:project_opened"
         }
       ]
     }
