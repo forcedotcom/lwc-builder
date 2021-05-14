@@ -16,4 +16,4 @@ To open LWC Builder:
 
 ## DEMO VIDEO
 
-[![DEMO VIDEO](http://img.youtube.com/vi/prhVtTGvMeU/0.jpg)](https://youtu.be/prhVtTGvMeU?t=573 "How we built LWC Builder VSCode Extension")
+[![DEMO VIDEO](http://img.youtube.com/vi/prhVtTGvMeU/0.jpg)](https://youtu.be/prhVtTGvMeU?t=573 'How we built LWC Builder VSCode Extension')
