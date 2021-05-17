@@ -13,3 +13,7 @@ To open LWC Builder:
 
 - Open the command palette and find "Open LWC Builder" command
 - Right click on your "lwc" folder and click on "Open LWC Builder"
+
+## DEMO VIDEO
+
+[![DEMO VIDEO](http://img.youtube.com/vi/prhVtTGvMeU/0.jpg)](https://youtu.be/prhVtTGvMeU?t=573 'How we built LWC Builder VSCode Extension')
