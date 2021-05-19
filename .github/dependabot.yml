@@ -1,0 +1,51 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: '/'
+    schedule:
+      interval: monthly
+    open-pull-requests-limit: 10
+    ignore:
+      - dependency-name: mocha
+        versions:
+          - 8.3.0
+      - dependency-name: typescript
+        versions:
+          - 4.2.2
+      - dependency-name: '@typescript-eslint/eslint-plugin'
+        versions:
+          - 4.15.2
+      - dependency-name: eslint
+        versions:
+          - 7.21.0
+      - dependency-name: pinst
+        versions:
+          - 2.1.6
+      - dependency-name: husky
+        versions:
+          - 4.3.8
+          - 5.1.2
+      - dependency-name: eslint-config-prettier
+        versions:
+          - 8.1.0
+      - dependency-name: '@typescript-eslint/parser'
+        versions:
+          - 4.15.2
+      - dependency-name: '@types/mocha'
+        versions:
+          - 8.2.1
+      - dependency-name: lwc-builder-ui-dev
+        versions:
+          - 0.1.5
+      - dependency-name: '@types/vscode'
+        versions:
+          - 1.53.0
+      - dependency-name: shelljs
+        versions:
+          - 0.8.4
+      - dependency-name: '@types/node'
+        versions:
+          - 14.14.25
+      - dependency-name: '@salesforce/dev-config'
+        versions:
+          - 2.1.0
