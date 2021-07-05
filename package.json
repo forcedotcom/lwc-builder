@@ -71,7 +71,7 @@
     "husky": "^7.0.0",
     "mocha": "^9.0.2",
     "pinst": "^2.1.6",
-    "prettier": "^2.2.1",
+    "prettier": "^2.3.2",
     "shelljs": "0.8.4",
     "typescript": "^4.3.5",
     "vscode-test": "^1.5.0"
