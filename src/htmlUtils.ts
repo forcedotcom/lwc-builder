@@ -20,14 +20,16 @@ export class HtmlUtils {
    * <script type="module" src="index.js"></script>
    * And store just the filename section of the script tag as group[1]
    */
-  protected static readonly scriptRegex = /script\stype=\"module\"\ssrc=\"(index\.js)\"/g;
+  protected static readonly scriptRegex =
+    /script\stype=\"module\"\ssrc=\"(index\.js)\"/g;
 
   /**
    * This regex will match tags in a string like this
    * href="./resources/[any path]"
    * And store just the filename section of the script tag as group[1]
    */
-  protected static readonly resourceRegex = /\shref=\"\.\/(resources\/[^\"]*)\"/g;
+  protected static readonly resourceRegex =
+    /\shref=\"\.\/(resources\/[^\"]*)\"/g;
 
   /**
    *
