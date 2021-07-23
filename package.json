@@ -8,7 +8,7 @@
   "author": "@albarivas",
   "repository": "https://github.com/developerforce/lwc-builder",
   "engines": {
-    "vscode": "^1.53.0"
+    "vscode": "^1.58.0"
   },
   "categories": [
     "Other"
