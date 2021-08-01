@@ -60,7 +60,7 @@
     "@types/mocha": "^8.2.2",
     "@types/node": "^16.0.0",
     "@types/vscode": "^1.53.0",
-    "@typescript-eslint/eslint-plugin": "^4.15.2",
+    "@typescript-eslint/eslint-plugin": "^4.28.5",
     "@typescript-eslint/parser": "^4.15.2",
     "eslint": "^7.30.0",
     "eslint-config-prettier": "^8.3.0",
