@@ -74,6 +74,6 @@
     "prettier": "^2.3.2",
     "shelljs": "0.8.4",
     "typescript": "^4.3.5",
-    "vscode-test": "^1.5.0"
+    "vscode-test": "^1.6.1"
   }
 }
