@@ -6,4 +6,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
-- Initial release
+## [0.1.5] - 2021-08-21
+
+### Changed
+
+- version up lwc-builder-ui@0.1.22
