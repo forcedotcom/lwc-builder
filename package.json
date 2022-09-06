@@ -1,9 +1,9 @@
 {
   "name": "lwc-builder",
-  "displayName": "lwc-builder",
-  "publisher": "lwc-builder",
-  "description": "VSCode extension to build LWC easily",
-  "version": "0.1.6",
+  "displayName": "LWC Builder",
+  "publisher": "ninoish",
+  "description": "VSCode extension to build Salesforce Lightning Web Component (LWC) with UI",
+  "version": "0.1.7",
   "license": "BSD-3-Clause",
   "author": "@albarivas",
   "repository": "https://github.com/developerforce/lwc-builder",
