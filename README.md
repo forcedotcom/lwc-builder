@@ -1,4 +1,5 @@
 # lwc-builder
+
 VSCode extension to build Salesforce Lightning Web Component (LWC) on UI.
 
 ## Installation
@@ -16,8 +17,8 @@ To open LWC Builder:
 [![DEMO VIDEO](https://img.youtube.com/vi/prhVtTGvMeU/0.jpg)](https://youtu.be/prhVtTGvMeU?t=573 'How we built LWC Builder VSCode Extension')
 
 ## LICENSE
-This extension is distributed under the [BSD-3](https://opensource.org/licenses/BSD-3-Clause) license.
 
+This extension is distributed under the [BSD-3](https://opensource.org/licenses/BSD-3-Clause) license.
 
 ## Contribution
 

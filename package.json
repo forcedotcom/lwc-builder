@@ -3,10 +3,11 @@
   "displayName": "lwc-builder",
   "publisher": "lwc-builder",
   "description": "VSCode extension to build LWC easily",
-  "version": "0.1.6",
+  "version": "0.1.8",
   "license": "BSD-3-Clause",
   "author": "@albarivas",
   "repository": "https://github.com/developerforce/lwc-builder",
+  "icon": "images/lwc-builder-icon.png",
   "engines": {
     "vscode": "^1.60.0"
   },
@@ -52,7 +53,7 @@
     "postinstall": "husky install"
   },
   "dependencies": {
-    "lwc-builder-ui": "^0.1.24"
+    "lwc-builder-ui": "^0.1.25"
   },
   "devDependencies": {
     "@salesforce/dev-config": "2.1.2",
