@@ -7,7 +7,7 @@
   "license": "BSD-3-Clause",
   "author": "@albarivas",
   "repository": "https://github.com/developerforce/lwc-builder",
-  "icon" : "images/lwc-builder-icon.png",
+  "icon": "images/lwc-builder-icon.png",
   "engines": {
     "vscode": "^1.60.0"
   },
