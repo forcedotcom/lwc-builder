@@ -1,8 +1,8 @@
 {
   "name": "lwc-builder",
-  "displayName": "lwc-builder",
+  "displayName": "LWC Builder",
   "publisher": "ninoish",
-  "description": "VSCode extension to build LWC easily",
+  "description": "VSCode extension to easily build LWC on the UI",
   "version": "0.1.8",
   "license": "BSD-3-Clause",
   "author": "@albarivas",

@@ -1,6 +1,6 @@
 # lwc-builder
 
-VSCode extension to build Salesforce Lightning Web Component (LWC) on UI.
+VSCode extension to build Salesforce Lightning Web Component (LWC) on the UI.
 
 ## Installation
 
@@ -10,11 +10,17 @@ https://marketplace.visualstudio.com/items?itemName=ninoish.lwc-builder
 To open LWC Builder:
 
 - Open the command palette and find "Open LWC Builder" command
-- Right click on your "lwc" folder and click on "Open LWC Builder"
+- Right click on the "lwc" folder of your SFDX Project and click "Open LWC Builder"
 
-## DEMO VIDEO
+![Screenshot](images/lwc-builder-screenshot-sample.jpg)
+
+## Demo Video
 
 [![DEMO VIDEO](https://img.youtube.com/vi/prhVtTGvMeU/0.jpg)](https://youtu.be/prhVtTGvMeU?t=573 'How we built LWC Builder VSCode Extension')
+
+## Sample Screenshot
+
+![Full Screenshot](images/lwc-builder-fullscreen-sample.jpg)
 
 ## LICENSE
 
