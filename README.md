@@ -12,7 +12,7 @@ To open LWC Builder:
 - Open the command palette and find "Open LWC Builder" command
 - Right click on the "lwc" folder of your SFDX Project and click "Open LWC Builder"
 
-![Screenshot](images/lwc-builder-screenshot-sample.jpg)
+![Screenshot](https://i.imgur.com/9NV0kK0.jpg)
 
 ## Demo Video
 
@@ -20,7 +20,7 @@ To open LWC Builder:
 
 ## Sample Screenshot
 
-![Full Screenshot](images/lwc-builder-fullscreen-sample.jpg)
+![Full Screenshot](https://imgur.com/dNL3W4S.jpg)
 
 ## LICENSE
 
