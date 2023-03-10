@@ -27,6 +27,7 @@ export class WebviewInstance {
       {
         // Enable scripts in the webview
         enableScripts: true,
+        retainContextWhenHidden: true,
       }
     );
 
@@ -60,11 +61,15 @@ export class WebviewInstance {
     return html;
   }
 
-  protected onDidReceiveMessageHandler(event: LWCBuilderEvent): void {
+  protected async onDidReceiveMessageHandler(
+    event: LWCBuilderEvent
+  ): Promise<void> {
     // Handle messages from the webview
     switch (event.type) {
       case 'create_button_clicked':
-        createLwcFolder(event.payload, this.lwcFolderUri);
+        await createLwcFolder(event.payload, this.lwcFolderUri);
+        this.webviewPanel.dispose();
+        return;
       case 'error':
         vscode.window.showErrorMessage(event.error);
         return;
