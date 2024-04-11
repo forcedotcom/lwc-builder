@@ -29,7 +29,7 @@ This extension is distributed under the [BSD-3](https://opensource.org/licenses/
 ## Contribution
 
 Anyone is welcome to contribute.
-Please follow [CONTRIBUTING.md](https://github.com/developerforce/lwc-builder/blob/main/CONTRIBUTING.md).
+Please follow [CONTRIBUTING.md](https://github.com/forcedotcom/lwc-builder/blob/main/CONTRIBUTING.md).
 
-See also [lwc-builder-ui](https://github.com/developerforce/lwc-builder-ui).
+See also [lwc-builder-ui](https://github.com/forcedotcom/lwc-builder-ui).
 lwc-builder is a VSCode Extension that launches lwc-builder-ui in VSCode context.
